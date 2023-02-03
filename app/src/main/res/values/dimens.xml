@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="wel_title_size">44sp</dimen>
+    <dimen name="InputHeight">56dp</dimen>
+    <dimen name="input_icon_width">44dp</dimen>
+    <dimen name="input_icon_height">44dp</dimen>
+    <dimen name="main_margin">16dp</dimen>
+    <dimen name="default_margin">10dp</dimen>
+    <dimen name="login_phone_margin_top">50dp</dimen>
+    <dimen name="input_line_margin">20dp</dimen>
+    <dimen name="line_height">1dp</dimen>
+    <dimen name="line_margin_v">8dp</dimen>
 </resources>

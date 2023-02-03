@@ -7,15 +7,40 @@
     tools:context=".acitvitys.LoginActivity">
 
     <TextView
-        android:textSize="@dimen/wel_title_size"
-        android:textStyle="bold"
-        android:textColor="@color/login_title_color"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
+        android:id="@+id/login_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
         android:text="@string/login_app"
-        ></TextView>
+        android:textColor="@color/login_title_color"
+        android:textSize="@dimen/wel_title_size"
+        android:textStyle="bold"></TextView>
 
+    <com.yuelin.interviewandroid.views.InputView
+        android:id="@+id/login_phone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/InputHeight"
+        android:layout_below="@id/login_title"
+        android:layout_marginTop="@dimen/login_phone_margin_top"
+        app:input_hint="@string/input_phone_hint" />
+
+    <View
+        style="@style/lineStyle"
+        android:layout_below="@id/login_phone"></View>
+
+    <com.yuelin.interviewandroid.views.InputView
+        android:id="@+id/login_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_phone"
+        android:layout_marginTop="@dimen/input_line_margin"
+        app:input_hint="@string/input_hint_password"
+        app:input_icon="@mipmap/password"
+        app:input_is_password="true" />
+
+    <View
+        style="@style/lineStyle"
+        android:layout_below="@id/login_password"></View>
 
 </RelativeLayout>

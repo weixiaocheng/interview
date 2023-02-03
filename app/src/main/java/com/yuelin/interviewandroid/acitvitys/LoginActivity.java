@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.yuelin.interviewandroid.R;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -4,6 +4,7 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,9 +44,15 @@ public class LoginActivity extends BaseActivity {
         Log.i(TAG, "login: 登录成功");
         // 注意这里一定要调用show方法
         Toast.makeText(this, "登录成功?", Toast.LENGTH_SHORT).show();
+        toTabbar();
     }
     
     public void register(View view) {
         Log.i(TAG, "register: 点击了用户注册去注册页面 -- 先不处理");
+    }
+
+    private void toTabbar() {
+        startActivity(new Intent(this, TabbarActivity.class));
+        finish();
     }
 }

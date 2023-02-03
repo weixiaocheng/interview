@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">interviewAndroid</string>
+    <string name="login_app">login app</string>
 </resources>

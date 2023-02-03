@@ -9,6 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="mainColor">#FF2ABBB6</color>
     <color name="login_title_color">#333333</color>
-<!--    线条的背景颜色-->
+    <!--    线条的背景颜色-->
     <color name="line_bg">#FFc3c3c3</color>
+    <color name="btnRedColor">#FFff553d</color>
+    <color name="btnRedColorH">#FFc80f1f</color>
 </resources>

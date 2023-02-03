@@ -3,4 +3,6 @@
     <string name="login_app">login app</string>
     <string name="input_phone_hint">请输入手机号</string>
     <string name="input_hint_password">请输入密码</string>
+    <string name="register_now">立即注册</string>
+    <string name="login_btn_title">登录</string>
 </resources>

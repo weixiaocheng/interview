@@ -75,4 +75,22 @@ public class InputView extends LinearLayout {
 
         addView(mView);
     }
+
+    /**
+     * 获取用户输入的信息
+     * @return
+     */
+    public String getString() {
+        return editText.getText().toString().trim();
+    }
+
+    /**
+     * 填充输入内容
+     * @param text
+     */
+    public void setString(String text) {
+        if (editText != null) {
+            editText.setText(text);
+        }
+    }
 }

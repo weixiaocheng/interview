@@ -10,6 +10,7 @@
     <dimen name="input_line_margin">20dp</dimen>
     <dimen name="line_height">1dp</dimen>
     <dimen name="line_margin_v">8dp</dimen>
+    <dimen name="btn_register_size">18sp</dimen>
     <dimen name="btn_title_size">22sp</dimen>
     <dimen name="login_btn_margin_top">40dp</dimen>
     <dimen name="default_corner_radius">8dp</dimen>

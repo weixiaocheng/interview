@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.yuelin.interviewandroid.R;
 
@@ -25,7 +26,9 @@ public class TabbarActivity extends BaseActivity {
             R.layout.view_third
     };
     private List<View> views;
+    private List<View> mDotViews;
 
+    private ViewGroup mDotViewGroup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,16 +38,50 @@ public class TabbarActivity extends BaseActivity {
 
     private void init() {
         viewPager = (ViewPager) findViewById(R.id.home_view_page);
+        mDotViewGroup = findViewById(R.id.dot_layout);
 
         views = new ArrayList<>();
+        mDotViews = new ArrayList<>();
         for (int index = 0; index < layoutList.length; index++) {
             ImageView imageView = new ImageView(this);
             imageView.setImageResource(R.mipmap.welcome_bg);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             views.add(imageView);
+
+            ImageView dot = new ImageView(this);
+            dot.setImageResource(index == 0 ? R.mipmap.home_icon : R.mipmap.ic_launcher);
+            dot.setMaxHeight(100);
+            dot.setMaxWidth(100);
+
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(40,40);
+            layoutParams.leftMargin = 20;
+            dot.setLayoutParams(layoutParams);
+            dot.setEnabled(false);
+            mDotViewGroup.addView(dot);
+            mDotViews.add(dot);
         }
 
         viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(4);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                for (int index = 0; index < mDotViews.size(); index++) {
+                    ImageView image = (ImageView) mDotViews.get(index);
+                    image.setImageResource(index == position ? R.mipmap.home_icon : R.mipmap.ic_launcher);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     PagerAdapter adapter = new PagerAdapter() {

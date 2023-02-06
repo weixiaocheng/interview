@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,20 +9,16 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/home_view_page"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="@dimen/tabber_height"
-         />
+        android:layout_height="match_parent" />
 
     <LinearLayout
-        android:id="@+id/home_tabbar"
-        android:background="#ff35D33f"
-        android:layout_width="match_parent"
+        android:id="@+id/dot_layout"
+        android:layout_width="220dp"
         android:layout_height="@dimen/tabber_height"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="45dp"
+        android:gravity="center"
+        android:orientation="horizontal" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

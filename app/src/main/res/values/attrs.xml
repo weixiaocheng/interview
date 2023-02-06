@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--    输入框的-->
     <declare-styleable name="InputView">
         <!--        引用图片-->
         <attr name="input_icon" format="reference"></attr>
@@ -7,5 +8,13 @@
         <attr name="input_hint" format="string"></attr>
         <!--        是否为密码-->
         <attr name="input_is_password" format="boolean"></attr>
+    </declare-styleable>
+
+    <!--    导航栏-->
+    <declare-styleable name="NavigationBar">
+        <!--        导航栏标题-->
+        <attr name="title" format="string"></attr>
+        <!--        是否需要返回按钮-->
+        <attr name="is_back" format="boolean"></attr>
     </declare-styleable>
 </resources>

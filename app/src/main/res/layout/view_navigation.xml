@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingLeft="@dimen/main_padding"
+    android:paddingRight="@dimen/main_padding"
+    android:background="@color/mainColor"
+    android:layout_height="@dimen/nav_height">
+
+    <ImageView
+        android:id="@+id/back_icon"
+        android:src="@mipmap/back_icon"
+        android:layout_centerVertical="true"
+        android:layout_width="22dp"
+        android:layout_height="22dp" />
+
+    <TextView
+        android:id="@+id/nav_title"
+        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="我是标题"
+        android:textSize="@dimen/nav_title_size"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>

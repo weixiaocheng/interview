@@ -16,4 +16,7 @@
     <dimen name="default_corner_radius">8dp</dimen>
 
     <dimen name="tabber_height">56dp</dimen>
+    <dimen name="nav_height">56dp</dimen>
+    <dimen name="nav_title_size">22sp</dimen>
+    <dimen name="main_padding">15dp</dimen>
 </resources>

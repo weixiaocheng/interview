@@ -9,6 +9,20 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/home_view_page"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/tabber_height"
+         />
+
+    <LinearLayout
+        android:id="@+id/home_tabbar"
+        android:background="#ff35D33f"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tabber_height"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

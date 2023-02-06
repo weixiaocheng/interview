@@ -8,6 +8,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.yuelin.interviewandroid.R;
 
@@ -37,8 +38,10 @@ public class TabbarActivity extends BaseActivity {
 
         views = new ArrayList<>();
         for (int index = 0; index < layoutList.length; index++) {
-            final View inflate = getLayoutInflater().inflate(layoutList[index], null);
-            views.add(inflate);
+            ImageView imageView = new ImageView(this);
+            imageView.setImageResource(R.mipmap.welcome_bg);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            views.add(imageView);
         }
 
         viewPager.setAdapter(adapter);

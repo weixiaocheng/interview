@@ -28,7 +28,6 @@ public class WelcomeActivity extends AppCompatActivity {
                 startLogin();
             }
         }, 2000);
-//        init();
     }
 
     private void init() {

@@ -86,7 +86,4 @@ public class NavigationBar extends RelativeLayout {
         backIcon.setVisibility(isBack? View.VISIBLE : View.GONE);
     }
 
-
-
-
 }

@@ -7,19 +7,23 @@
     tools:context=".acitvitys.TabbarActivity">
 
     <com.yuelin.interviewandroid.views.NavigationBar
-        app:title="你好我的tabbar"
-        app:is_back="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/nav_height" />
+        android:layout_height="@dimen/nav_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        app:is_back="false"
+        app:title="你好我的tabbar" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/home_view_page"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@id/home_tabbar" />
+
+    <View
+        style="@style/lineStyle"
         android:layout_above="@id/home_tabbar"
-        />
+        android:layout_margin="0dp" />
 
     <LinearLayout
         android:id="@+id/home_tabbar"
@@ -27,6 +31,41 @@
         android:layout_height="@dimen/tabber_height"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:orientation="horizontal" />
+        android:orientation="horizontal">
+
+        <com.yuelin.interviewandroid.components.TabbarItem
+            android:id="@+id/home_tabbar_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:tab_title_color="@drawable/tab_home_title_selector"
+            app:tab_icon="@drawable/tab_home_selector"
+            app:tab_title="home" />
+
+        <com.yuelin.interviewandroid.components.TabbarItem
+            android:id="@+id/home_tabbar_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:tab_title_color="@drawable/tab_home_title_selector"
+            app:tab_icon="@drawable/tab_news_selector"
+            app:tab_title="news" />
+
+        <com.yuelin.interviewandroid.components.TabbarItem
+            android:id="@+id/home_tabbar_collect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:tab_icon="@drawable/tab_collect_selector"
+            app:tab_title="collect" />
+
+        <com.yuelin.interviewandroid.components.TabbarItem
+            android:id="@+id/home_tabbar_mine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:tab_icon="@drawable/tab_set_selector"
+            app:tab_title="mine" />
+    </LinearLayout>
 
 </RelativeLayout>

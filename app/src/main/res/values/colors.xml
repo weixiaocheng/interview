@@ -13,4 +13,6 @@
     <color name="line_bg">#FFc3c3c3</color>
     <color name="btnRedColor">#FFff553d</color>
     <color name="btnRedColorH">#FFc80f1f</color>
+    <color name="tabBarColor">#FF333333</color>
+    <color name="tabBarColorH">#FF2ABBB6</color>
 </resources>

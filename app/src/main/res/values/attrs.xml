@@ -17,4 +17,14 @@
         <!--        是否需要返回按钮-->
         <attr name="is_back" format="boolean"></attr>
     </declare-styleable>
+
+    <!--    底部导航栏-->
+    <declare-styleable name="TabbarItem">
+        <!--        tabbar 标题-->
+        <attr name="tab_title" format="string"></attr>
+        <!--        tabbar 图标-->
+        <attr name="tab_icon" format="reference"></attr>
+        <!--选中时候的文字切换-->
+        <attr name="tab_title_color" format="reference"></attr>
+    </declare-styleable>
 </resources>

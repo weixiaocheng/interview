@@ -16,7 +16,7 @@
         android:text="@string/login_app"
         android:textColor="@color/login_title_color"
         android:textSize="@dimen/wel_title_size"
-        android:textStyle="bold"></TextView>
+        android:textStyle="bold" />
 
     <com.yuelin.interviewandroid.views.InputView
         android:id="@+id/login_phone"
@@ -28,7 +28,7 @@
 
     <View
         style="@style/lineStyle"
-        android:layout_below="@id/login_phone"></View>
+        android:layout_below="@id/login_phone" />
 
     <com.yuelin.interviewandroid.views.InputView
         android:id="@+id/login_password"
@@ -42,7 +42,7 @@
 
     <View
         style="@style/lineStyle"
-        android:layout_below="@id/login_password"></View>
+        android:layout_below="@id/login_password" />
 
     <TextView
         android:id="@+id/register_btn"
@@ -51,21 +51,22 @@
         android:layout_below="@id/login_password"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/login_btn_margin_top"
+        android:onClick="register"
         android:text="@string/register_now"
         android:textColor="@color/btnRedColor"
         android:textSize="@dimen/btn_register_size"
-        android:onClick="register"
         android:textStyle="bold" />
 
     <Button
         android:id="@+id/login_btn"
-        android:text="@string/login_btn_title"
+        android:layout_width="@dimen/login_btn_width"
+        android:layout_height="wrap_content"
         android:layout_below="@id/register_btn"
         android:layout_centerHorizontal="true"
-        android:textSize="@dimen/btn_title_size"
         android:layout_marginTop="@dimen/input_line_margin"
         android:background="@drawable/common_btn_selector"
-        android:layout_width="wrap_content"
         android:onClick="login"
-        android:layout_height="wrap_content" />
+        android:text="@string/login_btn_title"
+        android:textSize="@dimen/btn_title_size" />
+
 </RelativeLayout>

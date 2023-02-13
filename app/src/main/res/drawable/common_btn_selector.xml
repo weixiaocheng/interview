@@ -4,5 +4,5 @@
     <item android:drawable="@drawable/common_btn_h" android:state_pressed="true"></item>
     <item android:drawable="@drawable/common_btn_h" android:state_selected="true"></item>
 
-    <item android:drawable="@drawable/common_btn_n"  android:state_selected="false"></item>
+    <item android:drawable="@drawable/common_btn_n" ></item>
 </selector>

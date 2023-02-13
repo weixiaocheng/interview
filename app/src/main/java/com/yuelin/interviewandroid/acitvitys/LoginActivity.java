@@ -14,6 +14,12 @@ import com.yuelin.interviewandroid.R;
 import com.yuelin.interviewandroid.utils.UserUtils;
 import com.yuelin.interviewandroid.views.InputView;
 
+import java.io.IOException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URL;
+
 public class LoginActivity extends BaseActivity {
 
     private String phone , password;
@@ -33,7 +39,7 @@ public class LoginActivity extends BaseActivity {
         passwordIv.setString("123456");
     }
 
-    public void login(View view) {
+    public void login(View view) throws MalformedURLException {
         Log.i(TAG, "login: 点击了用户登录");
         password = passwordIv.getString();
         phone = phoneIv.getString();
@@ -45,7 +51,7 @@ public class LoginActivity extends BaseActivity {
         // 注意这里一定要调用show方法
         Toast.makeText(this, "登录成功?", Toast.LENGTH_SHORT).show();
         // 开始解决网络请求的问题
-//        toTabbar();
+
     }
     
     public void register(View view) {
@@ -56,4 +62,6 @@ public class LoginActivity extends BaseActivity {
         startActivity(new Intent(this, TabbarActivity.class));
         finish();
     }
+
+
 }

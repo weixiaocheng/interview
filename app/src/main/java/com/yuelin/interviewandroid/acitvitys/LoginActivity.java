@@ -45,7 +45,7 @@ public class LoginActivity extends BaseActivity {
         // 注意这里一定要调用show方法
         Toast.makeText(this, "登录成功?", Toast.LENGTH_SHORT).show();
         // 开始解决网络请求的问题
-        toTabbar();
+//        toTabbar();
     }
     
     public void register(View view) {

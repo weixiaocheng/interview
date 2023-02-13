@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.yuelin.interviewandroid.R;
+import com.yuelin.interviewandroid.network.ApiConfig;
 import com.yuelin.interviewandroid.utils.UserUtils;
 import com.yuelin.interviewandroid.views.InputView;
 
@@ -19,6 +20,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class LoginActivity extends BaseActivity {
 
@@ -51,6 +56,23 @@ public class LoginActivity extends BaseActivity {
         // 注意这里一定要调用show方法
         Toast.makeText(this, "登录成功?", Toast.LENGTH_SHORT).show();
         // 开始解决网络请求的问题
+        new Thread("网络请求") {
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    Request request = new Request.Builder()
+                            .url(ApiConfig.base_url + ApiConfig.api_login)
+                            .build();
+                    OkHttpClient client = new OkHttpClient();
+                    Response response = client.newCall(request).execute();
+                    Log.i(TAG, "login: " + response.body());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+            };
+        }.start();
 
     }
     

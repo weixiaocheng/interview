@@ -62,11 +62,11 @@ public class LoginActivity extends BaseActivity {
                 super.run();
                 try {
                     Request request = new Request.Builder()
-                            .url(ApiConfig.base_url + ApiConfig.api_login)
+                            .url(ApiConfig.base_url + ApiConfig.api_news)
                             .build();
                     OkHttpClient client = new OkHttpClient();
                     Response response = client.newCall(request).execute();
-                    Log.i(TAG, "login: " + response.body());
+                    Log.i(TAG, "login: " + response.body().string());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

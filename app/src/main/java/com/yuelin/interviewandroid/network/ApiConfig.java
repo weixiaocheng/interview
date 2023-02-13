@@ -11,4 +11,7 @@ public class ApiConfig {
 
     /// 用户登录 使用post 请求
     public static final String api_login = "login";
+
+    /// 新闻列表
+    public static final String api_news = "getNews";
 }

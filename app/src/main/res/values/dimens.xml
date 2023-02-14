@@ -20,4 +20,7 @@
     <dimen name="nav_title_size">22sp</dimen>
     <dimen name="main_padding">15dp</dimen>
     <dimen name="login_btn_width">200dp</dimen>
+    <dimen name="home_item_h">44dp</dimen>
+    <dimen name="home_icon_w">40dp</dimen>
+    <dimen name="home_icon_h">40dp</dimen>
 </resources>

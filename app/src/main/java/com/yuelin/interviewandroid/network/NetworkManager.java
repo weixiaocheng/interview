@@ -61,8 +61,22 @@ public class NetworkManager {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                listener.onFinish(response.body().string());
+                if (response.isSuccessful()) {
+                    listener.onFinish(response.body().string());
+                }else {
+                    listener.onError(new Exception(response.message()));
+                }
             }
         });
+    }
+
+    /**
+     * 获取新闻列表
+     * @param pageIndex 当前的页面
+     * @param listener 成功失败的回调
+     */
+    public void getNews( int pageIndex, HttpCallbackListener listener) {
+        String url = ApiConfig.base_url + ApiConfig.api_news + "?page_index=" + pageIndex;
+        get(url, listener);
     }
 }

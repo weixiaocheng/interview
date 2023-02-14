@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -32,7 +33,7 @@ import java.net.URL;
 import java.util.Base64;
 import java.util.List;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     private Gson mgson = new Gson();
 
@@ -64,7 +65,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View mView = inflater.inflate(R.layout.fragment_home, container, false);
         listView = mView.findViewById(R.id.home_list_view);
-//        listView.setAdapter(getAdapter());
+        listView.setOnItemClickListener(this);
         return mView;
     }
 
@@ -105,6 +106,12 @@ public class HomeFragment extends Fragment {
         });
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        CategoryRespone.CategoryBeanItem item = list.get(i);
+        Log.i(TAG, "onItemClick: " + item.name);
+    }
+
     public class HomeListAdapater extends BaseAdapter {
 
         private List<CategoryRespone.CategoryBeanItem> list;
@@ -135,6 +142,7 @@ public class HomeFragment extends Fragment {
             CategoryRespone.CategoryBeanItem categoryBeanItem = list.get(i);
             return categoryBeanItem.categoryId;
         }
+
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {

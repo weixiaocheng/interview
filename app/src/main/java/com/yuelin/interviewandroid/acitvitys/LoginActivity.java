@@ -2,8 +2,6 @@ package com.yuelin.interviewandroid.acitvitys;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,22 +9,11 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.yuelin.interviewandroid.R;
-import com.yuelin.interviewandroid.network.ApiConfig;
 import com.yuelin.interviewandroid.network.ICallBack;
-import com.yuelin.interviewandroid.network.NetworkManager;
-import com.yuelin.interviewandroid.network.NetworkTools;
 import com.yuelin.interviewandroid.utils.UserUtils;
 import com.yuelin.interviewandroid.views.InputView;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URL;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class LoginActivity extends BaseActivity {
 
@@ -59,26 +46,9 @@ public class LoginActivity extends BaseActivity {
         // 注意这里一定要调用show方法
         Toast.makeText(this, "登录成功?", Toast.LENGTH_SHORT).show();
         // 开始解决网络请求的问题
-        new Thread("网络请求") {
-            @Override
-            public void run() {
-                super.run();
-                NetworkTools.instance.getNews(0, callBack);
-            };
-        }.start();
     }
 
 
-    ICallBack callBack = new ICallBack() {
-        @Override
-        public void onSuccess(Object data) {
-        }
-
-        @Override
-        public void onfail(String msg) {
-
-        }
-    };
 
     public void register(View view) {
         Log.i(TAG, "register: 点击了用户注册去注册页面 -- 先不处理");

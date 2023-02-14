@@ -22,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.yuelin.interviewandroid.R;
 import com.yuelin.interviewandroid.acitvitys.TabbarActivity;
@@ -30,6 +31,7 @@ import com.yuelin.interviewandroid.network.NetworkManager;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.Guard;
 import java.util.Base64;
 import java.util.List;
 
@@ -160,6 +162,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                 handerView = (HanderView) view.getTag();
             }
             handerView.titleView.setText(item.name);
+            Glide.with(view).load("https://lmg.jj20.com/up/allimg/1114/040221103339/210402103339-8-1200.jpg").centerCrop().into(handerView.imageView);
             return view;
         }
 

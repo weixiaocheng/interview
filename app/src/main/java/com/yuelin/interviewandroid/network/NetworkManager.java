@@ -79,4 +79,13 @@ public class NetworkManager {
         String url = ApiConfig.base_url + ApiConfig.api_news + "?page_index=" + pageIndex;
         get(url, listener);
     }
+
+    /**
+     * 获取首页分类列表
+     * @param listener
+     */
+    public void getCategoryList( HttpCallbackListener listener) {
+        String url = ApiConfig.base_url + ApiConfig.api_categroylist;
+        get(url, listener);
+    }
 }

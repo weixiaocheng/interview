@@ -14,4 +14,7 @@ public class ApiConfig {
 
     /// 新闻列表
     public static final String api_news = "getNews";
+
+    /// 获取分类列表 例如 : ios android 每个面试题有不同的类别
+    public static final String api_categroylist = "getCategoryList";
 }

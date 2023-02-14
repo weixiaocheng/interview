@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment {
 
     public HomeListAdapater getAdapter() {
         if (adapter == null) {
-            adapter = new HomeListAdapater( list, getContext());
+            adapter = new HomeListAdapater(list, getContext());
         }
         return adapter;
     }
@@ -69,9 +69,6 @@ public class HomeFragment extends Fragment {
     }
 
 
-
-
-
     private void init() {
         // 获取网络请求
         loadData();
@@ -88,7 +85,7 @@ public class HomeFragment extends Fragment {
                     public void run() {
                         if (listView.getAdapter() == null) {
                             listView.setAdapter(getAdapter());
-                        }else {
+                        } else {
                             adapter.setList(list);
                             // 刷新数据
                             adapter.notifyDataSetChanged();
@@ -115,7 +112,7 @@ public class HomeFragment extends Fragment {
 
         private Context mContext;
 
-        public HomeListAdapater (List<CategoryRespone.CategoryBeanItem> list, Context mContext) {
+        public HomeListAdapater(List<CategoryRespone.CategoryBeanItem> list, Context mContext) {
             this.list = list;
             this.mContext = mContext;
         }
@@ -139,20 +136,10 @@ public class HomeFragment extends Fragment {
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             CategoryRespone.CategoryBeanItem item = list.get(i);
-//            HanderView handerView;
-//            if (view == null) {
-                view = LayoutInflater.from(mContext).inflate(R.layout.home_list_item,viewGroup,false);
-                ImageView img_icon = (ImageView) view.findViewById(R.id.home_item_icon);
-                TextView txt_title = (TextView) view.findViewById(R.id.home_item_title);
-                txt_title.setText(item.name);
-//                handerView = new HanderView();
-//                handerView.titleView = txt_title;
-//                handerView.imageView = img_icon;
-//                view.setTag( 1001, handerView);
-//            }else {
-//                handerView = (HanderView) view.getTag(1001);
-//            }
-//            handerView.titleView.setText(item.name);
+            view = LayoutInflater.from(mContext).inflate(R.layout.home_list_item, viewGroup, false);
+            ImageView img_icon = (ImageView) view.findViewById(R.id.home_item_icon);
+            TextView txt_title = (TextView) view.findViewById(R.id.home_item_title);
+            txt_title.setText(item.name);
             return view;
         }
 

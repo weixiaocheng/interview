@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import com.yuelin.interviewandroid.R;
 import com.yuelin.interviewandroid.network.ApiConfig;
+import com.yuelin.interviewandroid.network.ICallBack;
+import com.yuelin.interviewandroid.network.NetworkManager;
+import com.yuelin.interviewandroid.network.NetworkTools;
 import com.yuelin.interviewandroid.utils.UserUtils;
 import com.yuelin.interviewandroid.views.InputView;
 
@@ -44,7 +47,7 @@ public class LoginActivity extends BaseActivity {
         passwordIv.setString("123456");
     }
 
-    public void login(View view) throws MalformedURLException {
+    public void login(View view) throws MalformedURLException  {
         Log.i(TAG, "login: 点击了用户登录");
         password = passwordIv.getString();
         phone = phoneIv.getString();
@@ -60,22 +63,23 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void run() {
                 super.run();
-                try {
-                    Request request = new Request.Builder()
-                            .url(ApiConfig.base_url + ApiConfig.api_news)
-                            .build();
-                    OkHttpClient client = new OkHttpClient();
-                    Response response = client.newCall(request).execute();
-                    Log.i(TAG, "login: " + response.body().string());
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-
+                NetworkTools.instance.getNews(0, callBack);
             };
         }.start();
-
     }
-    
+
+
+    ICallBack callBack = new ICallBack() {
+        @Override
+        public void onSuccess(Object data) {
+        }
+
+        @Override
+        public void onfail(String msg) {
+
+        }
+    };
+
     public void register(View view) {
         Log.i(TAG, "register: 点击了用户注册去注册页面 -- 先不处理");
     }

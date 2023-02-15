@@ -8,12 +8,12 @@
     <ImageView
         android:id="@+id/home_item_icon"
         android:layout_width="@dimen/home_icon_w"
+        android:layout_margin="@dimen/main_margin"
         android:layout_height="@dimen/home_icon_h" />
 
     <TextView
         android:id="@+id/home_item_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/main_margin"
         android:text="我是占位符" />
 </LinearLayout>

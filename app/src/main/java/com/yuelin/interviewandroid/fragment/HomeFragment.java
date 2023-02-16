@@ -32,6 +32,7 @@ import com.yuelin.interviewandroid.network.NetworkManager;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.Guard;
+import java.time.Duration;
 import java.util.Base64;
 import java.util.List;
 
@@ -117,6 +118,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         CategoryRespone.CategoryBeanItem item = list.get(i);
         Log.i(TAG, "onItemClick: " + item.name);
+        Toast.makeText(getContext(), item.name, Toast.LENGTH_SHORT).show();
     }
 
     public class HomeListAdapater extends BaseAdapter {

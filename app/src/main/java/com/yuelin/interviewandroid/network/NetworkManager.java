@@ -106,7 +106,7 @@ public class NetworkManager {
      * @param listener
      */
     public void getQuestDetail(int questId, HttpCallbackListener listener) {
-        String url = ApiConfig.base_url + ApiConfig.api_getListWithCateid + "?id=" + questId;
+        String url = ApiConfig.base_url + ApiConfig.api_getQuestDetail + "?id=" + questId;
         get(url, listener);
     }
 }

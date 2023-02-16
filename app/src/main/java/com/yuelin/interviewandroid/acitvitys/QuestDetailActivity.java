@@ -58,7 +58,7 @@ public class QuestDetailActivity extends AppCompatActivity {
         String  head = "<head>" +
                 "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\"> "
                 +
-                "<style>img{max-width: 100%; width:auto; height:auto;} body{word-break:break-all;}</style>"
+                "<style>img{max-width: 100%; width:auto; height:auto;} body{word-break:break-all;margin:30px}</style>"
                 +
                 "</head>";
 

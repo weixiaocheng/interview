@@ -102,8 +102,13 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
             @Override
             public void onError(Exception e) {
-                Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT)
-                        .show();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT)
+                                .show();
+                    }
+                });
             }
         });
     }

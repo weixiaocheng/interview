@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,7 +30,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategroyListActivity extends AppCompatActivity {
+public class CategroyListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
 
     private ListView listView;
     private NavigationBar navigationBar;
@@ -60,6 +61,7 @@ public class CategroyListActivity extends AppCompatActivity {
 
     private void init() {
         listView = (ListView) findViewById(R.id.category_list_view);
+        listView.setOnItemClickListener(this);
         navigationBar = findViewById(R.id.nav_bar);
         navigationBar.setIsBack(true);
         navigationBar.setBackIconOnClick(new View.OnClickListener() {
@@ -121,6 +123,13 @@ public class CategroyListActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        // 跳转到下一页
+        CateListRespone.BeanItem item = list.get(i);
+
+    }
+
     private class ListAdapter extends BaseAdapter {
 
         @Override
@@ -151,7 +160,7 @@ public class CategroyListActivity extends AppCompatActivity {
                 hanlderView = (HanlderView) view.getTag();
             }
             hanlderView.titleTextV.setText(beanItem.title);
-            hanlderView.onTextV.setText(beanItem.questId + ".");
+            hanlderView.onTextV.setText("NO."+i);
             return view;
         }
     }

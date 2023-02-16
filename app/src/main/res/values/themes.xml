@@ -24,5 +24,9 @@
         <item name="android:layout_height">@dimen/line_height</item>
     </style>
 
+    <style name="itemTitleStyle" >
+        <item name="android:textSize">@dimen/item_cell_title_size</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 
 </resources>

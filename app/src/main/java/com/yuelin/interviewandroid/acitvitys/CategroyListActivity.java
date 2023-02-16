@@ -8,11 +8,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -20,6 +22,8 @@ import com.yuelin.interviewandroid.R;
 import com.yuelin.interviewandroid.model.CateListRespone;
 import com.yuelin.interviewandroid.network.NetworkManager;
 import com.yuelin.interviewandroid.views.NavigationBar;
+
+import org.w3c.dom.Text;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -37,6 +41,8 @@ public class CategroyListActivity extends AppCompatActivity {
     private Gson gson = new Gson();
 
     private ArrayList<CateListRespone.BeanItem> list = new ArrayList<CateListRespone.BeanItem>();
+
+    private ListAdapter adapter;
 
     public void setTitle(String title) {
         this.title = title;
@@ -70,6 +76,9 @@ public class CategroyListActivity extends AppCompatActivity {
              categoryId = intent.getIntExtra("categoryId", 1) ;
              setTitle(intent.getStringExtra("categoryName"));
         }
+
+        adapter = new ListAdapter();
+        listView.setAdapter(adapter);
         loadData();
     }
 
@@ -90,7 +99,13 @@ public class CategroyListActivity extends AppCompatActivity {
                 if (cateItemRes.data.size() > 0 ) {
                     pageIndex ++;
                 }
-
+                // 刷新列表
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyDataSetChanged();
+                    }
+                });
                 // 设置数据
             }
 
@@ -125,7 +140,28 @@ public class CategroyListActivity extends AppCompatActivity {
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
-            return null;
+            CateListRespone.BeanItem beanItem = list.get(i);
+            HanlderView hanlderView;
+            if (view == null) {
+                view = LayoutInflater.from(CategroyListActivity.this).inflate(R.layout.list_quest_item, viewGroup, false);
+                 hanlderView = new HanlderView();
+                hanlderView.init(view);
+                view.setTag(hanlderView);
+            }else {
+                hanlderView = (HanlderView) view.getTag();
+            }
+            hanlderView.titleTextV.setText(beanItem.title);
+            hanlderView.onTextV.setText(beanItem.questId + ".");
+            return view;
+        }
+    }
+
+    private class HanlderView {
+        public TextView onTextV;
+        public TextView titleTextV;
+        public void init(View view) {
+            this.onTextV = view.findViewById(R.id.quest_id);
+            titleTextV = view.findViewById(R.id.quest_title_id);
         }
     }
 }

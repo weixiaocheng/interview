@@ -99,4 +99,14 @@ public class NetworkManager {
         String url = ApiConfig.base_url + ApiConfig.api_getListWithCateid + "?page_index=" + String.valueOf(pageIndex) + "&&id=" + cateId;
         get(url, listener);
     }
+
+    /**
+     * 获取问题详情
+     * @param questId
+     * @param listener
+     */
+    public void getQuestDetail(int questId, HttpCallbackListener listener) {
+        String url = ApiConfig.base_url + ApiConfig.api_getListWithCateid + "?id=" + questId;
+        get(url, listener);
+    }
 }

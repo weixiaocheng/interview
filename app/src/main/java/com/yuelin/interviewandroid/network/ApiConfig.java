@@ -21,4 +21,7 @@ public class ApiConfig {
     // 获取分类单个类别的题目列表 /api/getListWithCateid
     public static final String api_getListWithCateid = "getListWithCateid";
 
+    // 获取题目详情
+    public static final String api_getQuestDetail = "getQuestDetail";
+
 }

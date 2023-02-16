@@ -15,6 +15,9 @@
         android:theme="@style/Theme.InterviewAndroid"
         tools:targetApi="31">
         <activity
+            android:name=".acitvitys.QuestDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".acitvitys.CategroyListActivity"
             android:exported="false" />
         <activity

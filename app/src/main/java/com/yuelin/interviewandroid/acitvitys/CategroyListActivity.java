@@ -127,7 +127,10 @@ public class CategroyListActivity extends AppCompatActivity implements AdapterVi
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         // 跳转到下一页
         CateListRespone.BeanItem item = list.get(i);
-
+        Intent intent = new Intent(this, QuestDetailActivity.class);
+        intent.putExtra("title", item.title);
+        intent.putExtra("questId", item.questId);
+        startActivity(intent);
     }
 
     private class ListAdapter extends BaseAdapter {

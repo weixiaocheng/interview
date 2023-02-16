@@ -23,4 +23,5 @@
     <dimen name="home_item_h">44dp</dimen>
     <dimen name="home_icon_w">40dp</dimen>
     <dimen name="home_icon_h">40dp</dimen>
+    <dimen name="item_cell_h">44dp</dimen>
 </resources>

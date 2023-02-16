@@ -3,6 +3,7 @@ package com.yuelin.interviewandroid.fragment;
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +26,7 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.yuelin.interviewandroid.R;
+import com.yuelin.interviewandroid.acitvitys.CategroyListActivity;
 import com.yuelin.interviewandroid.acitvitys.TabbarActivity;
 import com.yuelin.interviewandroid.model.CategoryRespone;
 import com.yuelin.interviewandroid.network.NetworkManager;
@@ -117,8 +119,10 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         CategoryRespone.CategoryBeanItem item = list.get(i);
-        Log.i(TAG, "onItemClick: " + item.name);
-        Toast.makeText(getContext(), item.name, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(getContext(), CategroyListActivity.class);
+        intent.putExtra("categoryId", item.categoryId);
+        intent.putExtra("categoryName", item.name);
+        startActivity(intent);
     }
 
     public class HomeListAdapater extends BaseAdapter {

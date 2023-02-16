@@ -30,6 +30,14 @@ public class NavigationBar extends RelativeLayout {
     private ViewGroup rightViewContent;
 
 
+    /**
+     * 设置返回按钮的点击事件
+     * @param onClickListener
+     */
+    public void setBackIconOnClick(OnClickListener onClickListener) {
+        backIcon.setOnClickListener(onClickListener);
+    }
+
     public NavigationBar(Context context) {
         super(context);
         init(context, null);

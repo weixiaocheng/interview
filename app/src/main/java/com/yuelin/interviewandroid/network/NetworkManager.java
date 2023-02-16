@@ -88,4 +88,15 @@ public class NetworkManager {
         String url = ApiConfig.base_url + ApiConfig.api_categroylist;
         get(url, listener);
     }
+
+    /**
+     * 获取分类之后的 显示list 数据
+     * @param pageIndex
+     * @param cateId
+     * @param listener
+     */
+    public void getCategoryListWithCateid(int pageIndex, String cateId, HttpCallbackListener listener) {
+        String url = ApiConfig.base_url + ApiConfig.api_getListWithCateid + "?page_index=" + String.valueOf(pageIndex) + "&&id=" + cateId;
+        get(url, listener);
+    }
 }

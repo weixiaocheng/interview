@@ -17,4 +17,8 @@ public class ApiConfig {
 
     /// 获取分类列表 例如 : ios android 每个面试题有不同的类别
     public static final String api_categroylist = "getCategoryList";
+
+    // 获取分类单个类别的题目列表 /api/getListWithCateid
+    public static final String api_getListWithCateid = "getListWithCateid";
+
 }

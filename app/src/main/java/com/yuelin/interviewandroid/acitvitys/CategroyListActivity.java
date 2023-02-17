@@ -51,6 +51,8 @@ public class CategroyListActivity extends AppCompatActivity implements AdapterVi
 
     private int visibleLastIndex = 0;
 
+    private boolean hasMore = true;
+
     public void setTitle(String title) {
         this.title = title;
         navigationBar.setTitle(title);
@@ -94,7 +96,7 @@ public class CategroyListActivity extends AppCompatActivity implements AdapterVi
             public void onScrollStateChanged(AbsListView absListView, int scrollState) {
                 int itemsLastIndex = adapter.getCount() - 1;
                 int lastIndex = itemsLastIndex + 1;
-                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && visibleLastIndex == lastIndex) {
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && visibleLastIndex == lastIndex && hasMore) {
                     loadData();
                 }
             }
@@ -112,7 +114,6 @@ public class CategroyListActivity extends AppCompatActivity implements AdapterVi
     // 加载数据
     private void loadData() {
 
-
         NetworkManager.getInstance.getCategoryListWithCateid(pageIndex, String.valueOf(categoryId), new NetworkManager.HttpCallbackListener() {
             @Override
             public void onFinish(String response) {
@@ -125,10 +126,11 @@ public class CategroyListActivity extends AppCompatActivity implements AdapterVi
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (cateItemRes.data.size() > 0) {
+                        if (cateItemRes.data.size() == 30) {
                             pageIndex++;
                             listView.addFooterView(loadMoreView);
                         } else {
+                            hasMore = false;
                             listView.removeFooterView(loadMoreView);
                         }
                         // 刷新列表

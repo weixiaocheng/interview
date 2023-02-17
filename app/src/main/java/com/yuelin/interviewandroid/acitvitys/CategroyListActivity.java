@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
@@ -30,7 +31,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategroyListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
+public class CategroyListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private ListView listView;
     private NavigationBar navigationBar;
@@ -45,6 +46,11 @@ public class CategroyListActivity extends AppCompatActivity implements AdapterVi
 
     private ListAdapter adapter;
 
+    private View loadMoreView;
+    private int visibleItemCount;
+
+    private int visibleLastIndex = 0;
+
     public void setTitle(String title) {
         this.title = title;
         navigationBar.setTitle(title);
@@ -56,11 +62,13 @@ public class CategroyListActivity extends AppCompatActivity implements AdapterVi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categroy_list);
-        init() ;
+        init();
     }
 
     private void init() {
         listView = (ListView) findViewById(R.id.category_list_view);
+        loadMoreView = getLayoutInflater().inflate(R.layout.list_load_more_view, null);
+
         listView.setOnItemClickListener(this);
         navigationBar = findViewById(R.id.nav_bar);
         navigationBar.setIsBack(true);
@@ -75,12 +83,29 @@ public class CategroyListActivity extends AppCompatActivity implements AdapterVi
         // 获取传参
         Intent intent = getIntent();
         if (intent != null) {
-             categoryId = intent.getIntExtra("categoryId", 1) ;
-             setTitle(intent.getStringExtra("categoryName"));
+            categoryId = intent.getIntExtra("categoryId", 1);
+            setTitle(intent.getStringExtra("categoryName"));
         }
 
         adapter = new ListAdapter();
         listView.setAdapter(adapter);
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int scrollState) {
+                int itemsLastIndex = adapter.getCount() - 1;
+                int lastIndex = itemsLastIndex + 1;
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && visibleLastIndex == lastIndex) {
+                    loadData();
+                }
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                CategroyListActivity.this.visibleItemCount = visibleItemCount;
+                visibleLastIndex = firstVisibleItem + visibleItemCount - 1;
+            }
+
+        });
         loadData();
     }
 
@@ -92,19 +117,22 @@ public class CategroyListActivity extends AppCompatActivity implements AdapterVi
             @Override
             public void onFinish(String response) {
                 CateListRespone cateItemRes = gson.fromJson(response, CateListRespone.class);
-                if (pageIndex == 0 ) {
+                if (pageIndex == 0) {
                     list = cateItemRes.data;
-                }else {
+                } else {
                     list.addAll(cateItemRes.data);
                 }
-
-                if (cateItemRes.data.size() > 0 ) {
-                    pageIndex ++;
-                }
-                // 刷新列表
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        if (cateItemRes.data.size() > 0) {
+                            pageIndex++;
+                            listView.addFooterView(loadMoreView);
+                        } else {
+                            listView.removeFooterView(loadMoreView);
+                        }
+                        // 刷新列表
+
                         adapter.notifyDataSetChanged();
                     }
                 });
@@ -156,14 +184,14 @@ public class CategroyListActivity extends AppCompatActivity implements AdapterVi
             HanlderView hanlderView;
             if (view == null) {
                 view = LayoutInflater.from(CategroyListActivity.this).inflate(R.layout.list_quest_item, viewGroup, false);
-                 hanlderView = new HanlderView();
+                hanlderView = new HanlderView();
                 hanlderView.init(view);
                 view.setTag(hanlderView);
-            }else {
+            } else {
                 hanlderView = (HanlderView) view.getTag();
             }
             hanlderView.titleTextV.setText(beanItem.title);
-            hanlderView.onTextV.setText("NO."+i);
+            hanlderView.onTextV.setText("NO." + i);
             return view;
         }
     }
@@ -171,6 +199,7 @@ public class CategroyListActivity extends AppCompatActivity implements AdapterVi
     private class HanlderView {
         public TextView onTextV;
         public TextView titleTextV;
+
         public void init(View view) {
             this.onTextV = view.findViewById(R.id.quest_id);
             titleTextV = view.findViewById(R.id.quest_title_id);

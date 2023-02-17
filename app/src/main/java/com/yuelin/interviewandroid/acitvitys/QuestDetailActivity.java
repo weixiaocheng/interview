@@ -74,7 +74,6 @@ public class QuestDetailActivity extends AppCompatActivity {
                 String base64Str = questDetailRespose.data.html;
                 byte[] decodedBytes = Base64.getDecoder().decode(base64Str);
                 html = new String(decodedBytes);
-                Log.i(TAG, "onFinish: " + html);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

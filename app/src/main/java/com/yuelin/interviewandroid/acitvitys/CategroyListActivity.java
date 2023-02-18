@@ -128,7 +128,7 @@ public class CategroyListActivity extends AppCompatActivity implements AdapterVi
                 } else {
                     list.addAll(cateItemRes.data);
                 }
-                Log.e(TAG, "onFinish:  " + cateItemRes.data.size() );
+//                Log.e(TAG, "onFinish:  " + cateItemRes.data.size() );
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

@@ -26,4 +26,5 @@
     <dimen name="item_cell_h">44dp</dimen>
 
     <dimen name="item_cell_title_size">18dp</dimen>
+    <dimen name="news_item_cell_w">345dp</dimen>
 </resources>

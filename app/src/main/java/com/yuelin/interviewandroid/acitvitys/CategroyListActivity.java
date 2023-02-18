@@ -60,6 +60,8 @@ public class CategroyListActivity extends AppCompatActivity implements AdapterVi
 
     private String title;
 
+    private boolean isloading;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,9 +96,8 @@ public class CategroyListActivity extends AppCompatActivity implements AdapterVi
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView absListView, int scrollState) {
-                int itemsLastIndex = adapter.getCount() - 1;
-                int lastIndex = itemsLastIndex + 1;
-                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && visibleLastIndex == lastIndex && hasMore) {
+
+                if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE  && hasMore) {
                     loadData();
                 }
             }
@@ -113,28 +114,34 @@ public class CategroyListActivity extends AppCompatActivity implements AdapterVi
 
     // 加载数据
     private void loadData() {
-
+        if (isloading) {
+            return;
+        }
+        isloading = true;
         NetworkManager.getInstance.getCategoryListWithCateid(pageIndex, String.valueOf(categoryId), new NetworkManager.HttpCallbackListener() {
             @Override
             public void onFinish(String response) {
+                isloading = false;
                 CateListRespone cateItemRes = gson.fromJson(response, CateListRespone.class);
                 if (pageIndex == 0) {
                     list = cateItemRes.data;
                 } else {
                     list.addAll(cateItemRes.data);
                 }
+                Log.e(TAG, "onFinish:  " + cateItemRes.data.size() );
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         if (cateItemRes.data.size() == 30) {
                             pageIndex++;
-                            listView.addFooterView(loadMoreView);
+                            if (listView.getFooterViewsCount() == 0) {
+                                listView.addFooterView(loadMoreView);
+                            }
                         } else {
                             hasMore = false;
                             listView.removeFooterView(loadMoreView);
                         }
                         // 刷新列表
-
                         adapter.notifyDataSetChanged();
                     }
                 });
@@ -143,6 +150,7 @@ public class CategroyListActivity extends AppCompatActivity implements AdapterVi
 
             @Override
             public void onError(Exception e) {
+                isloading = false;
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

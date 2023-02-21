@@ -27,4 +27,5 @@
 
     <dimen name="item_cell_title_size">18dp</dimen>
     <dimen name="news_item_cell_w">345dp</dimen>
+    <dimen name="new_item_cell_title_fontsize">14sp</dimen>
 </resources>

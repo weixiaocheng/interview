@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ public class QuestDetailActivity extends AppCompatActivity {
     private Gson gson = new Gson();
 
     private String html;
+    private float postionx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +56,37 @@ public class QuestDetailActivity extends AppCompatActivity {
         loadData();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        webView.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                switch (motionEvent.getAction()) {
+//                    case MotionEvent.ACTION_DOWN:
+//                        postionx = motionEvent.getX();
+//                        break;
+//                    case MotionEvent.ACTION_CANCEL:
+//                        postionx = 0;
+//                        break;
+//                    case MotionEvent.ACTION_UP:
+//                        float postionMove = motionEvent.getX();
+//                        if (postionx - postionMove > 0) {
+//                            Log.i(TAG, "onTouch: 后一个");
+//                        }else {
+//                            Log.i(TAG, "onTouch: 前一个");
+//                        }
+//                        return true;
+//                        break;
+//
+//                }
+//                return false;
+//            }
+//        });
+    }
+
     private String getHtmlData(String bodyHTML) {
-        String  head = "<head>" +
+        String head = "<head>" +
                 "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\"> "
                 +
                 "<style>img{max-width: 100%; width:auto; height:auto;} body{word-break:break-all;margin:30px}</style>"

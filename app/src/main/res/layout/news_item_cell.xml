@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:orientation="vertical"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/news_item_cell_img"
+
+        android:layout_width="match_parent"
+        android:layout_height="165dp" />
+
+    <TextView
+        android:id="@+id/news_item_cell_title"
+        android:layout_margin="@dimen/main_margin"
+        android:text="主标题"
+        android:maxLines="1"
+        android:textStyle="normal"
+        android:textColor="@color/black"
+        android:textSize="@dimen/new_item_cell_title_fontsize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="副标题"
+        android:id="@+id/news_item_cell_sub_title"
+        android:maxLines="2"
+        android:layout_marginHorizontal="@dimen/main_margin"
+        android:layout_width="wrap_content"
+        android:paddingBottom="@dimen/main_padding"
+        android:layout_height="wrap_content" />
 </LinearLayout>

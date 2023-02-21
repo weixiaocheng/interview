@@ -7,8 +7,10 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.yuelin.interviewandroid.model.ApiResponse;
 
+import java.io.File;
 import java.io.IOException;
 
+import okhttp3.Cache;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -23,7 +25,10 @@ public class NetworkManager {
     public static NetworkManager getInstance = new NetworkManager();
 
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-    private static OkHttpClient client = new OkHttpClient();
+    private static OkHttpClient client = new  OkHttpClient().newBuilder()
+            .cache(new Cache(new File("fos.txt"), 10 * 1024 * 1024)) //看下分析Cache的构造
+            .build();
+
 
     public interface HttpCallbackListener {
         void onFinish(String response);

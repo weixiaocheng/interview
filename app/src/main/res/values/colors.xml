@@ -15,4 +15,5 @@
     <color name="btnRedColorH">#FFc80f1f</color>
     <color name="tabBarColor">#FF333333</color>
     <color name="tabBarColorH">#FF2ABBB6</color>
+    <color name="gridBackColor">#FFf7f7f7</color>
 </resources>

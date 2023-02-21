@@ -2,10 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <GridView
         android:id="@+id/news_grid_content_view"
-        android:numColumns="1"
-        android:columnWidth="@dimen/news_item_cell_w"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:columnWidth="@dimen/news_item_cell_w"
+        android:stretchMode="columnWidth"
+        android:background="@drawable/grid_back"
+        android:verticalSpacing="20dp"
+        android:horizontalSpacing="@dimen/main_padding"
+        android:numColumns="1" />
 </RelativeLayout>

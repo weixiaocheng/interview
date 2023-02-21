@@ -1,12 +1,17 @@
 package com.yuelin.interviewandroid.acitvitys;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 
 import com.yuelin.interviewandroid.R;
+import com.yuelin.interviewandroid.network.ApiConfig;
+import com.yuelin.interviewandroid.utils.Utils;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -21,13 +26,23 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        handler = new Handler();
-        handler.postDelayed(new Runnable() {
+//        handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                startLogin();
+//            }
+//        }, 2000);
+        // 在这里检测网络配置网络
+        Utils.isNetOnline("http://192.168.2.112:8100/api", new Comparable<Boolean>() {
             @Override
-            public void run() {
+            public int compareTo(Boolean aBoolean) {
+                ApiConfig.base_url = aBoolean ? "http://192.168.2.112:8100/api/" : "http://192.168.1.76:8100/api";
+                Log.e(TAG, "compareTo: ".concat(aBoolean ? "链接成功" : "不可以访问"));
                 startLogin();
+                return 0;
             }
-        }, 2000);
+        });
     }
 
     private void init() {

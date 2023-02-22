@@ -2,6 +2,8 @@ package com.yuelin.interviewandroid.acitvitys;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import static com.yuelin.interviewandroid.utils.Utils.getHtmlData;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -59,24 +61,6 @@ public class QuestDetailActivity extends AppCompatActivity {
         questId = intent.getIntExtra("questId", 0);
         loadData();
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-    }
-
-    private String getHtmlData(String bodyHTML) {
-        String head = "<head>" +
-                "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\"> "
-                +
-                "<style>img{max-width: 100%; width:auto; height:auto;} body{word-break:break-all;margin:30px}</style>"
-                +
-                "</head>";
-
-        return "<html>" + head + "<body>" + bodyHTML + "</body></html>";
-    }
-
 
     private void loadData() {
         NetworkManager.getInstance.getQuestDetail(questId, new NetworkManager.HttpCallbackListener() {

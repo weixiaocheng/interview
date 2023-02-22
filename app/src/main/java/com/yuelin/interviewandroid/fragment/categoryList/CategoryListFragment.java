@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -41,6 +42,12 @@ public class CategoryListFragment extends BaseFragment {
     private int currentIndex = 0;
     private CateAdapter adapter;
 
+    public void setItemClickCallBack(CategoryItemClickCallBack itemClickCallBack) {
+        this.itemClickCallBack = itemClickCallBack;
+    }
+
+    private CategoryItemClickCallBack itemClickCallBack;
+
     public void contactList(List<CateListRespone.BeanItem> list) {
         if (this.list == null) {
             this.list = new ArrayList<>();
@@ -63,10 +70,11 @@ public class CategoryListFragment extends BaseFragment {
     private boolean hasMore;
     private boolean isLoading;
 
-    public static CategoryListFragment init(String categoryId,String categoryName) {
+    public static CategoryListFragment init(String categoryId, String categoryName, CategoryItemClickCallBack itemClickCallBack) {
         CategoryListFragment fragment = new CategoryListFragment();
         fragment.categoryId = categoryId;
         fragment.categoryName = categoryName;
+        fragment.itemClickCallBack = itemClickCallBack;
         return fragment;
     }
 
@@ -77,7 +85,7 @@ public class CategoryListFragment extends BaseFragment {
         footView = LayoutInflater.from(getContext()).inflate(R.layout.list_load_more_view, container, false);
         initView(view);
         currentIndex = 0;
-        adapter = CateAdapter.init( getContext());
+        adapter = CateAdapter.init(getContext());
         listView.setAdapter(adapter);
         // 最开始的数据加载
         loadData();
@@ -98,6 +106,15 @@ public class CategoryListFragment extends BaseFragment {
         });
         listView = view.findViewById(R.id.category_list_view);
         listView.addFooterView(footView);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (itemClickCallBack != null) {
+                    itemClickCallBack.itemOnClick(list.get(position));
+                }
+            }
+        });
     }
 
     private void initEvent() {

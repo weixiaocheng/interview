@@ -24,6 +24,18 @@ public class Utils {
     }
 
 
+    public static String getHtmlData(String bodyHTML) {
+        String head = "<head>" +
+                "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\"> "
+                +
+                "<style>img{max-width: 100%; width:auto; height:auto;} body{word-break:break-all;margin:30px}</style>"
+                +
+                "</head>";
+
+        return "<html>" + head + "<body>" + bodyHTML + "</body></html>";
+    }
+
+
     /**
      * 功能：检测当前URL是否可连接或是否有效,
      * 描述：最多连接网络 x次, 如果 x 次都不成功，视为该地址不可用

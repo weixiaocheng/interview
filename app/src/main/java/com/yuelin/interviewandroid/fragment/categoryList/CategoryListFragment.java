@@ -30,9 +30,13 @@ public class CategoryListFragment extends BaseFragment {
     /* 数据区 */
     private Gson mgson = new Gson();
 
+    // 分类id
     private String categoryId;
+    // 分类的名称
+    private String categoryName;
     // 从0开始算页面
     private int currentIndex = 0;
+    private CateAdapter adapter;
 
     public void contactList(List<CateListRespone.BeanItem> list) {
         if (this.list == null) {
@@ -42,21 +46,27 @@ public class CategoryListFragment extends BaseFragment {
         if (callBack != null) {
             callBack.callBackList(this.list);
         }
+        adapter.setList(this.list);
+        adapter.notifyDataSetChanged();
     }
 
 
     // 数据列表
     private List<CateListRespone.BeanItem> list = new ArrayList<>();
 
+    public List<CateListRespone.BeanItem> getList() {
+        return list;
+    }
+
     // 每次刷新数据之后回调一下总数据到activity里面, 这里需要处理 显示详情的逻辑
     private CallBackCategoryListData callBack;
     private boolean hasMore;
     private boolean isLoading;
 
-    public static CategoryListFragment init(String categoryId, CallBackCategoryListData callBack) {
+    public static CategoryListFragment init(String categoryId,String categoryName) {
         CategoryListFragment fragment = new CategoryListFragment();
         fragment.categoryId = categoryId;
-        fragment.callBack = callBack;
+        fragment.categoryName = categoryName;
         return fragment;
     }
 
@@ -65,20 +75,25 @@ public class CategoryListFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_categroylist, container, false);
         initView(view);
-        return view;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // 确保第一次永远为0, 界面不会有横竖屏的切换
         currentIndex = 0;
+        adapter = CateAdapter.init( getContext());
+        listView.setAdapter(adapter);
         // 最开始的数据加载
         loadData();
+        return view;
     }
 
     private void initView(View view) {
         navigationBar = view.findViewById(R.id.nav_bar);
+        navigationBar.setTitle(categoryName);
+        navigationBar.setIsBack(true);
+        navigationBar.setBackIconOnClick(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 返回上一页
+                getActivity().onBackPressed();
+            }
+        });
         listView = view.findViewById(R.id.category_list_view);
     }
 
@@ -103,9 +118,14 @@ public class CategoryListFragment extends BaseFragment {
                     showToastWithMsg("没有更多了");
                     return;
                 }
-                contactList(mR.data);
-                hasMore = true;
-                currentIndex++;
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        contactList(mR.data);
+                        hasMore = true;
+                        currentIndex++;
+                    }
+                });
             }
 
             @Override

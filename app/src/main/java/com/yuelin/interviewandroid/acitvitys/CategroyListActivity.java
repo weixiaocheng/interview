@@ -5,6 +5,7 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,11 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.yuelin.interviewandroid.R;
 import com.yuelin.interviewandroid.fragment.categoryList.CategoryItemClickCallBack;
 import com.yuelin.interviewandroid.fragment.categoryList.CategoryListFragment;
+import com.yuelin.interviewandroid.fragment.categoryList.QuestChangeLisenter;
 import com.yuelin.interviewandroid.fragment.categoryList.QuestDetailFragment;
 import com.yuelin.interviewandroid.model.CateListRespone;
 
 
-public class CategroyListActivity extends AppCompatActivity implements CategoryItemClickCallBack {
+public class CategroyListActivity extends AppCompatActivity implements CategoryItemClickCallBack, QuestChangeLisenter {
 
 
 
@@ -32,6 +34,7 @@ public class CategroyListActivity extends AppCompatActivity implements CategoryI
         if (questDetailFragment == null ){
             questDetailFragment = new QuestDetailFragment();
             questDetailFragment.setItemClickCallBack(this);
+            questDetailFragment.setQuestChangeLisenter(this);
         }
         return questDetailFragment;
     }
@@ -64,14 +67,15 @@ public class CategroyListActivity extends AppCompatActivity implements CategoryI
     }
 
     @Override
-    public void itemOnClick(CateListRespone.BeanItem item) {
+    public void itemOnClick(CateListRespone.BeanItem item, int postion) {
         if (item == null) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .hide(getQuestDetailFragment())
                     .show(getCateFragment())
                     .commit();
-        }else {
+        } else {
+            getQuestDetailFragment().setCurrentIndex(postion);
             getQuestDetailFragment().setQuestId(item.questId);
             getQuestDetailFragment().setTitle(item.title);
             getSupportFragmentManager()
@@ -80,5 +84,36 @@ public class CategroyListActivity extends AppCompatActivity implements CategoryI
                     .show(getQuestDetailFragment())
                     .commit();
         }
+    }
+
+    @Override
+    public void nextQuest() {
+        int index = getQuestDetailFragment().getCurrentIndex();
+        if (index >= getCateFragment().getList().size() - 1) {
+            if (getCateFragment().isHasMore()) {
+                Toast.makeText(this, "加载中", Toast.LENGTH_SHORT).show();
+                getCateFragment().loadData();
+            }
+            return;
+        }
+
+        index ++;
+        CateListRespone.BeanItem beanItem = getCateFragment().getList().get(index);
+        getQuestDetailFragment().setCurrentIndex(index);
+        getQuestDetailFragment().setQuestId(beanItem.questId);
+        getQuestDetailFragment().setTitle(beanItem.title);
+    }
+
+    @Override
+    public void previousQuestion() {
+        int index = getQuestDetailFragment().getCurrentIndex();
+        if (index == 0) {
+            return;
+        }
+        index = index - 1;
+        CateListRespone.BeanItem beanItem = getCateFragment().getList().get(index);
+        getQuestDetailFragment().setCurrentIndex(index);
+        getQuestDetailFragment().setQuestId(beanItem.questId);
+        getQuestDetailFragment().setTitle(beanItem.title);
     }
 }

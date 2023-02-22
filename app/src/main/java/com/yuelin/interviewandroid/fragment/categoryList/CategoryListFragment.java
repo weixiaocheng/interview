@@ -68,6 +68,11 @@ public class CategoryListFragment extends BaseFragment {
 
     // 每次刷新数据之后回调一下总数据到activity里面, 这里需要处理 显示详情的逻辑
     private boolean hasMore;
+
+    public boolean isHasMore() {
+        return hasMore;
+    }
+
     private boolean isLoading;
 
     public static CategoryListFragment init(String categoryId, String categoryName, CategoryItemClickCallBack itemClickCallBack) {
@@ -111,7 +116,7 @@ public class CategoryListFragment extends BaseFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (itemClickCallBack != null) {
-                    itemClickCallBack.itemOnClick(list.get(position));
+                    itemClickCallBack.itemOnClick(list.get(position), position);
                 }
             }
         });
@@ -139,7 +144,7 @@ public class CategoryListFragment extends BaseFragment {
     }
 
     // 数据加载
-    private void loadData() {
+    public void loadData() {
         // 避免重复加载
         if (isLoading) {
             return;

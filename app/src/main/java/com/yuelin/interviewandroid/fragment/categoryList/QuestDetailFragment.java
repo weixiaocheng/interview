@@ -1,12 +1,15 @@
 package com.yuelin.interviewandroid.fragment.categoryList;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import static com.yuelin.interviewandroid.utils.Utils.getHtmlData;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,7 +24,7 @@ import com.yuelin.interviewandroid.views.NavigationBar;
 
 import java.util.Base64;
 
-public class QuestDetailFragment extends BaseFragment {
+public class QuestDetailFragment extends BaseFragment implements View.OnClickListener {
 
     private NavigationBar navigationBar;
 
@@ -31,7 +34,24 @@ public class QuestDetailFragment extends BaseFragment {
 
     private CategoryItemClickCallBack itemClickCallBack;
 
+    private QuestChangeLisenter questChangeLisenter;
+
+    public void setQuestChangeLisenter(QuestChangeLisenter questChangeLisenter) {
+        this.questChangeLisenter = questChangeLisenter;
+    }
+
     private Gson mgson = new Gson();
+
+    private int currentIndex;
+
+    public int getCurrentIndex() {
+        return currentIndex;
+    }
+
+    public void setCurrentIndex(int currentIndex) {
+        this.currentIndex = currentIndex;
+    }
+
 
     public void setItemClickCallBack(CategoryItemClickCallBack itemClickCallBack) {
         this.itemClickCallBack = itemClickCallBack;
@@ -55,16 +75,13 @@ public class QuestDetailFragment extends BaseFragment {
         navigationBar = view.findViewById(R.id.nav_bar);
         navigationBar.setTitle("--");
         navigationBar.setIsBack(true);
-        navigationBar.setBackIconOnClick(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (itemClickCallBack != null) {
-                    itemClickCallBack.itemOnClick(null);
-                }
-            }
-        });
+        navigationBar.setBackIconOnClick(this);
 
         webView = view.findViewById(R.id.web_view_id);
+        Button nextBtn = view.findViewById(R.id.next_btn);
+        Button previousBtn = view.findViewById(R.id.previous_btn);
+        nextBtn.setOnClickListener(this);
+        previousBtn.setOnClickListener(this);
     }
 
     // 设置标题
@@ -98,5 +115,24 @@ public class QuestDetailFragment extends BaseFragment {
                 showToastWithMsg(e.toString());
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.back_icon) {
+            if (itemClickCallBack != null) {
+                itemClickCallBack.itemOnClick(null, 0);
+            }
+        }else if (v.getId() == R.id.previous_btn) {
+            if (questChangeLisenter != null) {
+                questChangeLisenter.previousQuestion();
+            }
+        } else if (v.getId() == R.id.next_btn) {
+            if (questChangeLisenter != null) {
+                questChangeLisenter.nextQuest();
+            }
+        }else {
+            Log.e(TAG, "onClick: 找不到id" );
+        }
     }
 }

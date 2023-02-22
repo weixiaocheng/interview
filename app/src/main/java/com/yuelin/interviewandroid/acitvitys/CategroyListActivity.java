@@ -9,11 +9,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.yuelin.interviewandroid.R;
-import com.yuelin.interviewandroid.fragment.categoryList.CallBackCategoryListData;
 import com.yuelin.interviewandroid.fragment.categoryList.CategoryListFragment;
-import com.yuelin.interviewandroid.model.CateListRespone;
 
-import java.util.List;
 
 
 public class CategroyListActivity extends AppCompatActivity  {

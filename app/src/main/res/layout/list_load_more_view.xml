@@ -4,6 +4,7 @@
     android:layout_height="@dimen/item_cell_h">
 
     <TextView
+        android:id="@+id/load_more_title"
         style="@style/itemTitleStyle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

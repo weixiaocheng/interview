@@ -17,6 +17,7 @@ import com.yuelin.interviewandroid.fragment.CollectFragment;
 import com.yuelin.interviewandroid.fragment.HomeFragment;
 import com.yuelin.interviewandroid.fragment.MineFragment;
 import com.yuelin.interviewandroid.fragment.NewsFragment;
+import com.yuelin.interviewandroid.views.NavigationBar;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ public class TabbarActivity extends BaseActivity implements View.OnClickListener
     private TabbarItem tabHome, tabNews, tabCollect, tabMine;
     private ArrayList<TabbarItem> tabbarList;
 
+    private NavigationBar navigationBar;
     private int[] tabIds = {
             R.id.home_tabbar_home,
             R.id.home_tabbar_news,
@@ -42,6 +44,8 @@ public class TabbarActivity extends BaseActivity implements View.OnClickListener
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabbar);
+        navigationBar = findViewById(R.id.nav_bar);
+        navigationBar.setTitle("home");
         init();
     }
 
@@ -82,15 +86,19 @@ public class TabbarActivity extends BaseActivity implements View.OnClickListener
             switch (view.getId()) {
                 case R.id.home_tabbar_home:
                     tempF = home_f;
+                    navigationBar.setTitle("home");
                     break;
                 case R.id.home_tabbar_news:
                     tempF = news_f;
+                    navigationBar.setTitle("news");
                     break;
                 case R.id.home_tabbar_collect:
                     tempF = collect_f;
+                    navigationBar.setTitle("收藏");
                     break;
                 case R.id.home_tabbar_mine:
                     tempF = mine_f;
+                    navigationBar.setTitle("我的");
                     break;
             }
         }

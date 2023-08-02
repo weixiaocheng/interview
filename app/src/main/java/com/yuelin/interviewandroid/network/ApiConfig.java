@@ -4,10 +4,10 @@ public class ApiConfig {
     /**
      * 当前项目的运行状态, 是否为调试中, 发版之前需要修改回来为 release
      */
-    private static boolean isDebug = true;
+    private static boolean isDebug = false;
 
     /// 网络请求地址
-    public static String base_url = isDebug ? "http://192.168.2.116:8100/api/" : "http://api.yuelin.link/api/";
+    public static String base_url = isDebug ? "http://192.168.2.116:8100/api/" : "http://api-interview.yuelin.link/api/";
 
     /// 用户登录 使用post 请求
     public static final String api_login = "login";

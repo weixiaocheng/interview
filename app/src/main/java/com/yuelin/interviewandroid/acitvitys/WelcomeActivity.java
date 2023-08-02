@@ -30,15 +30,16 @@ public class WelcomeActivity extends AppCompatActivity {
 
         // 在这里检测网络配置网络
         // http://192.168.1.5:8100/api 本地服务器
-        Utils.isNetOnline("http://192.168.1.5:8100/api", new Comparable<Boolean>() {
-            @Override
-            public int compareTo(Boolean aBoolean) {
-                ApiConfig.base_url = aBoolean ? "http://192.168.1.5:8100/api/" : "http://192.168.2.116:8100/api/";
-                Log.e(TAG, "compareTo: ".concat(aBoolean ? "链接成功" : "不可以访问"));
-                startLogin();
-                return 0;
-            }
-        });
+//        Utils.isNetOnline("http://192.168.1.5:8100/api", new Comparable<Boolean>() {
+//            @Override
+//            public int compareTo(Boolean aBoolean) {
+//                ApiConfig.base_url = aBoolean ? "http://192.168.1.5:8100/api/" : "http://192.168.2.116:8100/api/";
+//                Log.e(TAG, "compareTo: ".concat(aBoolean ? "链接成功" : "不可以访问"));
+//                startLogin();
+//                return 0;
+//            }
+//        });
+        startLogin();
     }
 
     private void init() {
